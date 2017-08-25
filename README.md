@@ -5,5 +5,5 @@
     <br/>
 
     若要測試此範例請將你的Line bot WebHook設為: http://你的domain/api/cictest
-    <br/>
+  
     "請換成你自己的Channel Access Token" 那一段務必要記得換...
