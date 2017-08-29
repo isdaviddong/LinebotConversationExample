@@ -8,19 +8,19 @@ using System.Web.Http;
 
 namespace LinebotConversationExample.Controllers
 {
-    public class CICTestController : ApiController
+    public class CICTest2Controller : ApiController
     {
         [HttpPost]
         public IHttpActionResult POST()
-        {
+        { 
             string ChannelAccessToken = "eu93Yv4pxcz8pTTypG61p6RUHMnXdr0ElrE7FXOBFFgeKL/8wvmgdKpA9j1Akl3eP2YwHc/34q8GTZK5NC+zBDCRzbXCMrsdCiW87gVZZYeV/NkwtaQzpbQY6JDkD/4ELHI9UoX6+UT8WH7OvOruyAdB04t89/1O/w1cDnyilFU=";
             var responseMsg = "";
 
             try
             {
                 //定義資訊蒐集者
-                isRock.LineBot.Conversation.InformationCollector<LeaveRequestV> CIC =
-                    new isRock.LineBot.Conversation.InformationCollector<LeaveRequestV>(ChannelAccessToken);
+                isRock.LineBot.Conversation.InformationCollector<LeaveRequestV2> CIC =
+                    new isRock.LineBot.Conversation.InformationCollector<LeaveRequestV2>(ChannelAccessToken);
                 CIC.OnMessageTypeCheck += (s, e) => {
                     switch (e.CurrentPropertyName)
                     {
@@ -49,7 +49,7 @@ namespace LinebotConversationExample.Controllers
                 //剖析JSON
                 var ReceivedMessage = isRock.LineBot.Utility.Parsing(postData);
                 //定義接收CIC結果的類別
-                ProcessResult<LeaveRequestV> result;
+                ProcessResult<LeaveRequestV2> result;
                 if (ReceivedMessage.events[0].message.text == "我要請假")
                 {
                     //把訊息丟給CIC 
@@ -121,7 +121,7 @@ namespace LinebotConversationExample.Controllers
     /// <summary>
     /// 用來表達一個對話
     /// </summary>
-    public class LeaveRequestV : ConversationEntity
+    public class LeaveRequestV2 : ConversationEntity
     {
         [ButtonsTemplateQuestion("詢問", "請問您要請的假別是?", "https://arock.blob.core.windows.net/blogdata201706/22-124357-ad3c87d6-b9cc-488a-8150-1c2fe642d237.png", "事假", "病假", "公假", "婚假")]
         [Order(1)]
